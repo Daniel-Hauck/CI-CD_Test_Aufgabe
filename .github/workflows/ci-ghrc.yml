@@ -1,5 +1,5 @@
 name: CI + Docker Image to GHCR
-
+ 
 on:
   workflow_dispatch: # (Erlaubt auch manuelles Starten per Button)
   push:
