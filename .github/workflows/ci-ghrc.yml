@@ -16,25 +16,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        run: echo "TODO"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20  
-        run: echo "TODO"
 
       - name: Install dependencies
         run: npm Install
-        run: echo "TODO"
 
       - name: Run lint
         run: npm run lint
-        run: echo "TODO"
 
       - name: Run tests
         run: npm test
-        run: echo "TODO"
 
   docker:
     name: Build und Push Docker Images
@@ -46,7 +41,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        run: echo "TODO"
 
       # --- AB HIER HILFT EUCH DAS SKELETON ---
       # Dieser Schritt generiert Variablen für die Image-Namen (alles kleingeschrieben)
@@ -63,7 +57,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "TODO"
+        
 
       - name: Build and push web image
         uses: docker/build-push-action@v5
@@ -72,7 +66,7 @@ jobs:
           file: services/web/Dockerfile
           push: true
           tags: ghcr.io/${{ steps.image-vars.outputs.owner_lc }}/quiz-web:${{ steps.image-vars.outputs.short_sha }},ghcr.io/${{ steps.image-vars.outputs.owner_lc }}/quiz-web:latest
-        run: echo "TODO"
+        
 
       - name: Build and push api image
         uses: docker/build-push-action@v6
@@ -81,4 +75,4 @@ jobs:
           file: ./services/api/Dockerfile
           push: true
           tags: ghcr.io/${{ steps.image-vars.outputs.owner_lc }}/quiz-api:${{ steps.image-vars.outputs.short_sha }},ghcr.io/${{ steps.image-vars.outputs.owner_lc }}/quiz-api:latest
-        run: echo "TODO"
+        
